@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1= title
+  p Saiteja Kattamuri welcomes
+  button(type="button", class="btn btn-danger", onclick="update()") Press Me for the contents
+  |
+  div(id="target") Display
+  a(href='/earphones') Earphones page link
+  |
+  script. 
+    let client_count = 0;
+    function update() {
+      client_count = client_count + 1; 
+      document.getElementById("target").innerHTML = `Value now ${client_count}`  ;
+      }
