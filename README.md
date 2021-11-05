@@ -1,6 +1,6 @@
-# fwb47kattamuri
+# db47kattamuri
 
-Heroku server: https://fwb47kattamuri.herokuapp.com/
+Heroku server: https://db47kattamuri.herokuapp.com/
 class earphones{
 brand (string), earbudsModel(string), jackMM(number);
 }
