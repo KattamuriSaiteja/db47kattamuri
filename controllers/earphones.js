@@ -1,8 +1,19 @@
 var earphones = require('../models/earphones');
 // List of all earphones
+exports.earphones_list = async function (req, res) {
+    try {
+        theEarphones = await earphones.find();
+        res.send(theEarphones);
+    }
+    catch (err) {
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    }
+};
+/*
 exports.earphones_list = function (req, res) {
     res.send('NOT IMPLEMENTED: earphones list');
-};
+};*/
 // for a specific earphones.
 exports.earphones_detail = function (req, res) {
     res.send('NOT IMPLEMENTED: earphones detail: ' + req.params.id);
