@@ -31,8 +31,20 @@ exports.earphones_detail = function (req, res) {
     res.send('NOT IMPLEMENTED: earphones detail: ' + req.params.id);
 };
 // Handle earphones create on POST.
-exports.earphones_create_post = function (req, res) {
-    res.send('NOT IMPLEMENTED: earphones create POST');
+exports.earphones_create_post = async function (req, res) {
+    console.log(req.body)
+    let document = new earphones();
+    document.brand = req.body.brand;
+    document.earbudsModel = req.body.earbudsModel;
+    document.jackMM = req.body.jackMM;
+    try {
+        let result = await document.save();
+        res.send(result);
+    }
+    catch (err) {
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    }
 };
 // Handle earphones delete form on DELETE.
 exports.earphones_delete = function (req, res) {
