@@ -1,0 +1,47 @@
+extends layout
+
+block content
+    h1= title
+
+    if (toShow == null)
+        h2 No instance to delete
+    else
+        - let earphonesid = toShow._id
+        - let earphonesbrand = toShow.brand
+        - let earphonesearbudsModel = toShow.earbudsModel
+        - let earphonesjackMM = toShow.jackMM
+
+        div.row(class='mb-2')
+            div.mr-1 ID is
+            div #{earphonesid}
+        - let actionid = "/resource/earphones/" + earphonesid
+        form(id='earphonesForm', action= actionid, method="PUT")
+            div.form-group
+                label.earphonesAttr(for='brand') Earphones brand
+                input#brand(type='text' name='brand', value= earphonesbrand )
+            div.form-group
+                label.earphonesAttr(for='earbudsModel') Earbuds model
+                input#earbudsModel(type='text' name='earbudsModel', value= earbudsmodel )
+            div.form-group
+                label.earphonesAttr(for='jackMM') JackMM
+                input#jackMM(type='text' name='jackMM', value= jackMM )
+            input(type="submit")
+
+    script.
+        document.forms['earphonesForm'].addEventListener('submit', (event) => {
+            event.preventDefault();
+            console.log(event.target)
+            // TODO do something here to show user that form is being submitted
+            fetch(event.target.action, {
+                method: 'PUT',
+                body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+            }).then((resp) => {
+                return resp.json(); // or resp.text() or whatever the server sends
+            }).then((body) => {
+                alert("Update succeded")
+                // TODO handle body
+            }).catch((error) => {
+                // TODO handle error
+                alert("Update failed " + error )
+            });
+        });

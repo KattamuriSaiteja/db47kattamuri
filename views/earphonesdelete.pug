@@ -1,0 +1,55 @@
+extends layout
+
+block content
+    h1= title
+
+    if (toShow == null)
+        h2 No instance to delete
+    else
+        - let earphonesid = toShow._id
+        - let earphonesbrand = toShow.brand
+        - let earphonesearbudsModel = toShow.earbudsModel
+        - let earphonesjackMM = toShow.jackMM
+        - let actionid = "/resource/earphones/" + earphonesid
+
+        script let actionid = "#{actionid}"
+        div
+            div.row
+                div(class='earphonesAttr mr-3') Earphones ID is:
+                div(class='newAttr') #{earphonesid}
+            div.row
+                div(class='earphonesAttr mr-3') Earphones brand is:
+                div(class='newAttr') #{earphonesbrand}
+            div.row
+                div(class='earphonesAttr mr-3') Earphones model is:
+                div(class='newAttr') #{earphonesearbudsModel}
+            div.row
+                div(class='earphonesAttr mr-3') Earphones JackMM is:
+                div(class='newAttr') #{earphonesjackMM}
+
+
+        button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+        button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+
+    script.
+        function cancel() {
+            // Go back to the home page for the earphones collection
+            window.location.href='/earphones'
+        }
+    script.
+        function deleteOnid() {
+            console.log("Deleting the Resource")
+            // delete first
+            fetch(actionid, {
+                method: 'DELETE'      // Don't need a body for the delete
+            }).then((resp) => {
+                return resp.json();   // or resp.text() or whatever the server sends
+            }).then((body) => {
+                alert("Delete succeded")
+                window.location.href='/earphones'
+                // TODO handle body
+            }).catch((error) => {
+                // TODO handle error
+                alert("Delete failed " + error )
+            });
+        }
