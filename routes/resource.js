@@ -18,4 +18,7 @@ router.put('/earphones/:id',
 router.get('/earphones/:id', earphones_controller.earphones_detail);
 // GET request for list of all Costume items.
 router.get('/earphones', earphones_controller.earphones_list);
+/* GET detail costume page */
+router.get('/detail', earphones_controller.earphones_view_one_Page);
 module.exports = router;
+
