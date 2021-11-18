@@ -1,20 +1,26 @@
 extends layout
+
 block content
-    h1= title
-    - let earphonesid = toShow._id
-    - let brand = toShow.brand
-    - let earbudsModel = toShow.earbudsModel
-    - let jackMM = toShow.jackMM
-    div
-    div.row
-    div(class='earphonesAttr mr-3') Earphones ID is:
-    div #{earphonesid}
-    div.row
-    div(class='earphonesAttr mr-3') Earphones brand is:
-    div #{brand}
-    div.row
-    div(class='earphonesAttr mr-3') Earphones earbuds model is:
-    div #{earbudsModel}
-    div.row
-    div(class='earphonesAttr mr-3') Earphones jackmm is:
-    div #{jackMM}
+    h1(class="style")= title
+
+    if (toShow == null)
+        h2 No instance to delete
+    else
+        - let earphonesid = toShow._id
+        - let brand = toShow.brand
+        - let earbudsModel = toShow.earbudsModel
+        - let jackMM = toShow.jackMM
+        - let actionid = "/resource/earphones/" + earphonesid
+        div
+        div.row
+        div(class='earphonesAttr mr-3') Earphones ID is:
+        div #{earphonesid}
+        div.row
+        div(class='earphonesAttr mr-3') Earphones brand is:
+        div #{brand}
+        div.row
+        div(class='earphonesAttr mr-3') Earphones earbuds model is:
+        div #{earbudsModel}
+        div.row
+        div(class='earphonesAttr mr-3') Earphones jackmm is:
+        div #{jackMM}
