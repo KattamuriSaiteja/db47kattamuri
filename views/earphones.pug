@@ -1,20 +1,26 @@
 extends layout
 
 block content
-  h1= title
-  p Earphone results
-  div(class="container-fluid")
+    h1= title
+    p Earphone results
+    div(class="container-fluid")
         div(class="row")
             -
                 let earphones = results
-                                    
-            each v,index in earphones
-                div(class="col-sm-2" onclick=`buy(${index})`) #{v.brand}
-                div(class="col-sm-2" onclick=`buy(${index})`) #{v.earbudsModel}
-                div(class="col-sm-2" onclick=`buy(${index})`) #{v.jackMM}
+            div(class="container-fluid")
+                div(class="row m-1")
+                each earphone in earphones
+                    - let destination = `dispatch(\"/earphones/update?id=${earphone._id}\")`
+                    div(class="row-sm-2" class="m-1") Earphone #{earphone.brand}(#{earphone.earbudsModel}) is #{earphone.jackMM}
+                        button.btn( class="btn-primary ml-1", onclick= destination) Update
 
                 script.                
-                      function buy(intemNo)
-                      {
-                            alert(`you purchased Item ${intemNo+1}`)
-                      }
+                    function buy(intemNo)
+                    {
+                        alert(`you purchased Item ${intemNo+1}`)
+                    }
+                script.
+                    function dispatch(path)
+                    {
+                        window.location.href=path
+                    }
