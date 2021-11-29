@@ -25,10 +25,10 @@ router.get('/detail', earphones_controlers.earphones_view_one_Page);
 module.exports = router;
 
 /* GET create earphones page */
-router.get('/create', earphones_controlers.earphones_create_Page);
+router.get('/create', secured, earphones_controlers.earphones_create_Page);
 
 /* GET create update page */
 router.get('/update', secured, earphones_controlers.earphones_update_Page);
 
 /* GET create earphones page */
-router.get('/delete', earphones_controlers.earphones_delete_Page);
+router.get('/delete', secured, earphones_controlers.earphones_delete_Page);

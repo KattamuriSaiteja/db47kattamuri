@@ -1,6 +1,8 @@
 extends layout
 
 block content
+    - let create = `dispatch(\"earphones/create\")`
+    button.btn(class="btn-primary ml-1", onclick= create) Create
     h1= title
     p Earphone results
     div(class="container-fluid")
@@ -11,8 +13,12 @@ block content
                 div(class="row m-1")
                 each earphone in earphones
                     - let destination = `dispatch(\"/earphones/update?id=${earphone._id}\")`
+                    - let detail = `dispatch(\"/earphones/detail?id=${earphone._id}\")`
+                    - let del = `dispatch(\"/earphones/delete?id=${earphone._id}\")`
                     div(class="row-sm-2" class="m-1") Earphone #{earphone.brand}(#{earphone.earbudsModel}) is #{earphone.jackMM}
                         button.btn(class="btn-primary ml-1", onclick= destination) Update
+                        button.btn(class="btn-success ml-1", onclick= detail) Get details
+                        button.btn(class="btn-warning ml-1", onclick= del) Delete
 
                 script.                
                     function buy(intemNo)
